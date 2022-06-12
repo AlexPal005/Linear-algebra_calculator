@@ -11,11 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,8 +28,15 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QLabel *label;
-    QPushButton *pushButton;
     QLabel *label_2;
+    QLabel *label_3;
+    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_2;
+    QLabel *label_4;
+    QPushButton *pushButton;
+    QTableWidget *tableWidget;
+    QLabel *label_5;
+    QLineEdit *lineEdit_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -35,7 +45,13 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setEnabled(true);
-        MainWindow->resize(704, 514);
+        MainWindow->resize(800, 600);
+        QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMaximumSize(QSize(800, 600));
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -113,21 +129,55 @@ public:
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setEnabled(true);
-        label->setGeometry(QRect(150, 10, 404, 40));
+        label->setGeometry(QRect(210, 10, 404, 40));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
+        label->setMaximumSize(QSize(600, 400));
         QFont font;
         font.setPointSize(18);
         label->setFont(font);
         label->setAcceptDrops(false);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(10, 70, 201, 29));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(10, 110, 91, 71));
+        label_2->setGeometry(QRect(10, 60, 131, 21));
+        QFont font1;
+        font1.setPointSize(11);
+        label_2->setFont(font1);
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(10, 100, 171, 20));
+        label_3->setFont(font1);
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setGeometry(QRect(180, 60, 41, 26));
+        lineEdit_2 = new QLineEdit(centralwidget);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        lineEdit_2->setGeometry(QRect(180, 100, 41, 26));
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(10, 130, 91, 20));
+        label_4->setFont(font1);
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(270, 60, 111, 31));
+        pushButton->setFont(font1);
+        tableWidget = new QTableWidget(centralwidget);
+        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+        tableWidget->setGeometry(QRect(10, 160, 231, 241));
+        label_5 = new QLabel(centralwidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(260, 160, 161, 41));
+        label_5->setFont(font1);
+        lineEdit_3 = new QLineEdit(centralwidget);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        lineEdit_3->setGeometry(QRect(430, 170, 113, 26));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 704, 26));
+        menubar->setGeometry(QRect(0, 0, 800, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -142,8 +192,12 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\320\232\320\260\320\273\321\214\320\272\321\203\320\273\321\217\321\202\320\276\321\200 \320\273\321\226\320\275\321\226\320\271\320\275\320\276\321\227 \320\260\320\273\320\263\320\265\320\261\321\200\320\270", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\320\232\321\226\320\273\321\214\320\272\321\226\321\201\321\202\321\214 \321\200\321\217\320\264\320\272\321\226\320\262", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "\320\232\321\226\320\273\321\214\320\272\321\226\321\201\321\202\321\214 \321\201\321\202\320\276\320\262\320\277\321\207\320\270\320\272\321\226\320\262", nullptr));
+        lineEdit->setText(QString());
+        label_4->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\202\321\200\320\270\321\206\321\217:", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\321\200\320\260\321\205\321\203\320\262\320\260\321\202\320\270", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\267\320\275\320\260\321\207\320\275\320\270\320\272 \320\274\320\260\321\202\321\200\320\270\321\206\321\226", nullptr));
     } // retranslateUi
 
 };

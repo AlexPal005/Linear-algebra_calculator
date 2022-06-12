@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidget>
+#include <QLabel>
+#include <QWidget>
+#include <QString>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -13,9 +18,15 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void create_cell();
     ~MainWindow();
 
 private slots:
+
+    void on_lineEdit_editingFinished();
+
+    void on_lineEdit_2_editingFinished();
+
     void on_pushButton_clicked();
 
 private:
