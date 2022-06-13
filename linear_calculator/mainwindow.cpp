@@ -223,3 +223,76 @@ void MainWindow::on_pushButton_4_clicked()
      }
 }
 
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    int row_A = get_row_A();
+    if(get_col_A()==get_row_B()){
+        matrix new_matr_A(read_table(), get_row_A(),get_col_A());
+        matrix new_matr_B(read_table_B(), get_row_B(),get_col_B());
+
+        ui->tableWidget_3->setRowCount(row_A);
+        ui->tableWidget_3->setColumnCount(get_col_B());
+        ui->tableWidget_3->horizontalHeader()->setDefaultSectionSize(20);
+        ui->tableWidget_3->verticalHeader()->setDefaultSectionSize(20);
+        double** matr = new_matr_A.mult(new_matr_A, new_matr_B);
+        for (int i = 0; i < row_A; i++) {
+            for (int j = 0; j < get_col_B(); j++){
+               QTableWidgetItem *item = new QTableWidgetItem(QString:: number(matr[i][j]));
+               ui->tableWidget_3->setItem(i,j,item);
+            }
+         }
+    }
+    else{
+        Dialog window;
+        window.mult_error();
+        window.setModal(true);
+        window.exec();
+    }
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    matrix new_matr_A(read_table(), get_row_A(),get_col_A());
+
+    double** arr = new_matr_A.solve();
+    if(arr==0){
+        Dialog window;
+        window.solve_error();
+        window.setModal(true);
+        window.exec();
+    }
+    else{
+        ui->tableWidget_3->setRowCount(get_row_A());
+        ui->tableWidget_3->setColumnCount(2);
+        ui->tableWidget_3->horizontalHeader()->setDefaultSectionSize(70);
+        ui->tableWidget_3->verticalHeader()->setDefaultSectionSize(20);
+
+        for (int i = 0; i < get_row_A(); i++) {
+               QTableWidgetItem *item = new QTableWidgetItem(QString:: number(arr[i][get_col_A()-1]));
+               QTableWidgetItem *item_1 = new QTableWidgetItem("X"+QString:: number(i+1)+"=");
+               ui->tableWidget_3->setItem(i,0,item_1);
+               ui->tableWidget_3->setItem(i,1,item);
+         }
+    }
+
+}
+
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    matrix new_matr_A(read_table(), get_row_A(),get_col_A());
+    double** arr = new_matr_A.transpose();
+    ui->tableWidget_3->setRowCount(get_col_A());
+    ui->tableWidget_3->setColumnCount(get_row_A());
+    ui->tableWidget_3->horizontalHeader()->setDefaultSectionSize(20);
+    ui->tableWidget_3->verticalHeader()->setDefaultSectionSize(20);
+    for (int i = 0; i < get_col_A(); i++) {
+        for (int j = 0; j < get_row_A(); j++){
+           QTableWidgetItem *item = new QTableWidgetItem(QString:: number(arr[i][j]));
+           ui->tableWidget_3->setItem(i,j,item);
+        }
+     }
+}
+

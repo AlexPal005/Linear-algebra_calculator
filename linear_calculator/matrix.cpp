@@ -385,7 +385,7 @@ double** matrix::transpose()
     return mat1;
 
 }
-double* matrix::solve()
+double** matrix::solve()
 {
     double* res=new double[row];
     int col;
@@ -393,6 +393,7 @@ double* matrix::solve()
     if (row + 1 < column) {
 
         cout << "The equations don't have a unique solution" << endl;
+        return 0;
 
     }
     else {
@@ -405,6 +406,7 @@ double* matrix::solve()
 
 
             cout << "The equations don't have a unique solution" << endl;
+            return 0;
         }
         else {
 
@@ -505,26 +507,11 @@ double* matrix::solve()
 
                 cout << endl;
             }
-
-            for (int i = 0; i < row; i++)
-
-                delete[]mat1[i];
-
-            delete[]mat1;
+            return mat1;
         }
     }
-    int temp = 0;
-    for (int i = 0; i < row - 1; i++) {
-        for (int j = 0; j < row - i - 1; j++) {
-            if (res[j] > res[j + 1]) {
+    return 0;
 
-                temp = res[j];
-                res[j] = res[j + 1];
-                res[j + 1] = temp;
-            }
-        }
-    }
-    return res;
 }
 
 matrix::~matrix()

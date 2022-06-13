@@ -48,6 +48,9 @@ public:
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
     QLineEdit *lineEdit_6;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_6;
+    QPushButton *pushButton_7;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -62,6 +65,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(800, 600));
         MainWindow->setMaximumSize(QSize(800, 600));
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
@@ -224,6 +228,15 @@ public:
         lineEdit_6 = new QLineEdit(centralwidget);
         lineEdit_6->setObjectName(QString::fromUtf8("lineEdit_6"));
         lineEdit_6->setGeometry(QRect(270, 460, 51, 31));
+        pushButton_5 = new QPushButton(centralwidget);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_5->setGeometry(QRect(340, 460, 131, 31));
+        pushButton_6 = new QPushButton(centralwidget);
+        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
+        pushButton_6->setGeometry(QRect(480, 460, 211, 31));
+        pushButton_7 = new QPushButton(centralwidget);
+        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        pushButton_7->setGeometry(QRect(590, 420, 141, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -257,6 +270,9 @@ public:
         lineEdit_5->setText(QString());
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "\320\241\321\203\320\274\320\260 \320\274\320\260\321\202\321\200\320\270\321\206\321\214 \320\220+\320\222", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\274\320\275\320\276\320\266\320\270\321\202\320\270 \320\274\320\260\321\202\321\200\320\270\321\206\321\216 A \320\275\320\260 \321\207\320\270\321\201\320\273\320\276:", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\274\320\275\320\276\320\266\320\270\321\202\320\270 A*B", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\321\200\321\226\321\210\320\270\321\202\320\270 \321\201\320\270\321\201\321\202\320\265\320\274\321\203 \321\200\321\226\320\262\320\275\321\217\320\275\321\214 \320\220", nullptr));
+        pushButton_7->setText(QCoreApplication::translate("MainWindow", "\320\242\321\200\320\260\320\275\321\201\320\277\320\276\320\275\321\203\320\262\320\260\321\202\320\270 \320\220", nullptr));
     } // retranslateUi
 
 };

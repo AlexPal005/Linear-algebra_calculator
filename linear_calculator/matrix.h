@@ -15,7 +15,7 @@ public:
     double det(); // Визначник матриці <=3
     double det_for(double** z, int p);// визначник матриці >=3
     void memory();// очищення пам'яті
-    double* solve();// вирішення рівнянь
+    double** solve();// вирішення рівнянь
     void single_matrix(); // створення одиничної матриці
     double** transpose(); // транспонована матриця
 

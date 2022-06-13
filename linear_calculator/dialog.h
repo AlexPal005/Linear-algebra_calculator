@@ -14,6 +14,8 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     void subtractions_arror();
+    void mult_error();
+    void solve_error();
     ~Dialog();
 
 private:
