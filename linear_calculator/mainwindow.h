@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void create_cell();
+    double** read_table();
     ~MainWindow();
 
 private slots:
