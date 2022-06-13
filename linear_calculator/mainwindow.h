@@ -18,8 +18,14 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void create_cell();
+    void create_cell(int row, int col);
     double** read_table();
+    double** read_table_B();
+    int get_row_A();
+    int get_col_A();
+    int get_row_B();
+    int get_col_B();
+    void create_cell_B(int row, int col);
     ~MainWindow();
 
 private slots:
@@ -29,6 +35,16 @@ private slots:
     void on_lineEdit_2_editingFinished();
 
     void on_pushButton_clicked();
+
+    void on_lineEdit_4_editingFinished();
+
+    void on_lineEdit_5_editingFinished();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;

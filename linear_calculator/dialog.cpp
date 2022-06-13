@@ -12,3 +12,6 @@ Dialog::~Dialog()
 {
     delete ui;
 }
+void Dialog::subtractions_arror(){
+    ui->label->setText("         Матриці повинні бути\n          однакового розміру!");
+}

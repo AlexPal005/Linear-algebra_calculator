@@ -28,9 +28,9 @@ public:
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QString::fromUtf8("Dialog"));
-        Dialog->resize(250, 130);
-        Dialog->setMinimumSize(QSize(250, 130));
-        Dialog->setMaximumSize(QSize(250, 130));
+        Dialog->resize(300, 130);
+        Dialog->setMinimumSize(QSize(300, 130));
+        Dialog->setMaximumSize(QSize(300, 130));
         buttonBox = new QDialogButtonBox(Dialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setGeometry(QRect(90, 70, 151, 32));
@@ -39,7 +39,7 @@ public:
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         label = new QLabel(Dialog);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(30, 20, 241, 31));
+        label->setGeometry(QRect(30, 10, 241, 51));
         QFont font;
         font.setPointSize(11);
         label->setFont(font);

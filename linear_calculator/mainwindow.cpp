@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setStyleSheet("border: 2px solid green;");
     ui->tableWidget->verticalHeader()->hide();
     ui->tableWidget->horizontalHeader()->hide();
+    ui->tableWidget_2->setStyleSheet("border: 2px solid green;");
+    ui->tableWidget_2->verticalHeader()->hide();
+    ui->tableWidget_2->horizontalHeader()->hide();
+    ui->tableWidget_3->setStyleSheet("border: 2px solid green;");
+    ui->tableWidget_3->verticalHeader()->hide();
+    ui->tableWidget_3->horizontalHeader()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -21,31 +27,46 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::create_cell(){
-
-     int row = ui->lineEdit->text().toInt();
-     int col = ui->lineEdit_2->text().toInt();
+int MainWindow::get_row_A(){
+      return ui->lineEdit->text().toInt();
+}
+int MainWindow::get_row_B(){
+      return ui->lineEdit_4->text().toInt();
+}
+int MainWindow::get_col_A(){
+      return ui->lineEdit_2->text().toInt();
+}
+int MainWindow::get_col_B(){
+      return ui->lineEdit_5->text().toInt();
+}
+void MainWindow::create_cell(int row, int col){
      ui->tableWidget->setRowCount(row);
      ui->tableWidget->setColumnCount(col);
      ui->tableWidget->horizontalHeader()->setDefaultSectionSize(20);
      ui->tableWidget->verticalHeader()->setDefaultSectionSize(20);
 
 }
+void MainWindow::create_cell_B(int row, int col){
+     ui->tableWidget_2->setRowCount(row);
+     ui->tableWidget_2->setColumnCount(col);
+     ui->tableWidget_2->horizontalHeader()->setDefaultSectionSize(20);
+     ui->tableWidget_2->verticalHeader()->setDefaultSectionSize(20);
+
+}
 
 void MainWindow::on_lineEdit_editingFinished()
 {
-    create_cell();
+    create_cell(get_row_A(), get_col_A());
 }
 
 
 void MainWindow::on_lineEdit_2_editingFinished()
 {
-    create_cell();
+    create_cell(get_row_A(), get_col_A());
 }
 double** MainWindow::read_table(){//зчитати матрицю із таблиці 1
-    int row = ui->lineEdit->text().toInt();
-    int col = ui->lineEdit_2->text().toInt();
+    int row = get_row_A();
+    int col = get_col_A();
         double** m1 = new double* [row];
         for (int i = 0; i < row; i++) {
          m1[i] = new double[col];
@@ -62,10 +83,29 @@ double** MainWindow::read_table(){//зчитати матрицю із табл�
          }
         return m1;
 }
+double** MainWindow::read_table_B(){//зчитати матрицю із таблиці 1
+    int row = get_row_B();
+    int col = get_col_B();
+        double** m1 = new double* [row];
+        for (int i = 0; i < row; i++) {
+         m1[i] = new double[col];
+        }
+        for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++){
+                    QString check;
+                    QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
+                    if (NULL != item) {
+                        check = item->text();
+                     }
+                 m1[i][j] = check.toInt();
+                }
+         }
+        return m1;
+}
 void MainWindow::on_pushButton_clicked()//обчислити визначник
 {
-    int row = ui->lineEdit->text().toInt();
-    int col = ui->lineEdit_2->text().toInt();
+    int row = get_row_A();
+    int col = get_col_A();
 
       matrix new_matr(read_table(), row,col);
       int det = new_matr.det();
@@ -91,4 +131,95 @@ void MainWindow::on_pushButton_clicked()//обчислити визначник
       }
 }
 
+
+void MainWindow::on_lineEdit_4_editingFinished()
+{
+    create_cell_B(get_row_B(), get_col_B());
+}
+
+
+void MainWindow::on_lineEdit_5_editingFinished()
+{
+   create_cell_B(get_row_B(), get_col_B());
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    int row_A = get_row_A();
+    int col_A = get_col_A();
+    if(get_row_A()==get_row_B() && get_col_A()==get_col_B()){
+        matrix new_matr_A(read_table(), get_row_A(),get_col_A());
+        matrix new_matr_B(read_table_B(), get_row_B(),get_col_B());
+
+        ui->tableWidget_3->setRowCount(row_A);
+        ui->tableWidget_3->setColumnCount(col_A);
+        ui->tableWidget_3->horizontalHeader()->setDefaultSectionSize(20);
+        ui->tableWidget_3->verticalHeader()->setDefaultSectionSize(20);
+        double** matr = new_matr_A.subtraction_matrix(new_matr_A, new_matr_B);
+        for (int i = 0; i < row_A; i++) {
+            for (int j = 0; j < col_A; j++){
+               QTableWidgetItem *item = new QTableWidgetItem(QString:: number(matr[i][j]));
+               ui->tableWidget_3->setItem(i,j,item);
+            }
+         }
+    }
+    else{
+        Dialog window;
+        window.subtractions_arror();
+        window.setModal(true);
+        window.exec();
+    }
+
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    int row_A = get_row_A();
+    int col_A = get_col_A();
+    if(get_row_A()==get_row_B() && get_col_A()==get_col_B()){
+        matrix new_matr_A(read_table(), get_row_A(),get_col_A());
+        matrix new_matr_B(read_table_B(), get_row_B(),get_col_B());
+
+        ui->tableWidget_3->setRowCount(row_A);
+        ui->tableWidget_3->setColumnCount(col_A);
+        ui->tableWidget_3->horizontalHeader()->setDefaultSectionSize(20);
+        ui->tableWidget_3->verticalHeader()->setDefaultSectionSize(20);
+        double** matr = new_matr_A.sum_matrix(new_matr_A, new_matr_B);
+        for (int i = 0; i < row_A; i++) {
+            for (int j = 0; j < col_A; j++){
+               QTableWidgetItem *item = new QTableWidgetItem(QString:: number(matr[i][j]));
+               ui->tableWidget_3->setItem(i,j,item);
+            }
+         }
+    }
+    else{
+        Dialog window;
+        window.subtractions_arror();
+        window.setModal(true);
+        window.exec();
+    }
+
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    int row_A = get_row_A();
+    int col_A = get_col_A();
+    matrix new_matr_A(read_table(), get_row_A(),get_col_A());
+
+    ui->tableWidget_3->setRowCount(row_A);
+    ui->tableWidget_3->setColumnCount(col_A);
+    ui->tableWidget_3->horizontalHeader()->setDefaultSectionSize(20);
+    ui->tableWidget_3->verticalHeader()->setDefaultSectionSize(20);
+    int num = ui->lineEdit_6->text().toInt();
+    double** matr = new_matr_A.multiplic_number(num);
+    for (int i = 0; i < row_A; i++) {
+        for (int j = 0; j < col_A; j++){
+           QTableWidgetItem *item = new QTableWidgetItem(QString:: number(matr[i][j]));
+           ui->tableWidget_3->setItem(i,j,item);
+        }
+     }
+}
 
